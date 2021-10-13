@@ -23,8 +23,8 @@ SOFTWARE.
 import logging
 import time
 import re
-from discord.ext import commands
-from discord.gateway import DiscordWebSocket
+from disnake.ext import commands
+from disnake.gateway import DiscordWebSocket
 from typing import Optional, Union
 
 from .errors import *
@@ -129,7 +129,7 @@ class Player:
 
     Attributes
     ------------
-    bot: Union[discord.ext.commands.Bot, discord.ext.commands.AutoShardedBot]
+    bot: Union[disnake.ext.commands.Bot, disnake.ext.commands.AutoShardedBot]
         The discord Bot instance.
     guild_id: int
         The guild ID the player is connected to.

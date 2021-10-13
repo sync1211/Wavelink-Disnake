@@ -10,13 +10,13 @@ class WavelinkMixin:
     """Wavelink Mixin class.
 
     .. warning::
-        You must use this class in conjuction with a discord.py `commands.Cog`.
+        You must use this class in conjuction with a disnake `commands.Cog`.
 
     Example
     ---------
     .. code:: py
 
-        # WavelinkMixin must be used alongside a discord.py cog.
+        # WavelinkMixin must be used alongside a disnake cog.
         class MusicCog(commands.Cog, wavelink.WavelinkMixin):
 
             @wavelink.Wavelink.listener()

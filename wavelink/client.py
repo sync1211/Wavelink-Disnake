@@ -23,7 +23,7 @@ SOFTWARE.
 import aiohttp
 import asyncio
 import logging
-from discord.ext import commands
+from disnake.ext import commands
 from functools import partial
 from json import dumps
 from typing import Optional, Union
@@ -384,7 +384,7 @@ class Client:
         password: str
             The password to authenticate on the server.
         region: str
-            The region as a valid discord.py guild.region to associate the :class:`wavelink.node.Node` with.
+            The region as a valid disnake guild.region to associate the :class:`wavelink.node.Node` with.
         identifier: str
             A unique identifier for the :class:`wavelink.node.Node`
         shard_id: Optional[int]
