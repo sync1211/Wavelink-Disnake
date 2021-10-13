@@ -3,7 +3,6 @@
 ![Python3.8](https://img.shields.io/badge/Python-3.8%20%7C%203.8-blue.svg)
 
 ![LICENSE](https://img.shields.io/github/license/EvieePy/Wavelink.svg)
-    :target: LICENSE
 
 A robust and powerful Lavalink wrapper for [Disnake](https://github.com/EQUENOS/disnake)!
 
