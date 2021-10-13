@@ -1,8 +1,6 @@
-![Logo](./logo.png)
+![Logo](https://raw.githubusercontent.com/PythonistaGuild/Wavelink/master/logo.png)
 
-![Python3.8](https://img.shields.io/badge/Python-3.8%20%7C%203.8-blue.svg)
-
-![LICENSE](https://img.shields.io/github/license/EvieePy/Wavelink.svg)
+<img src=https://img.shields.io/badge/Python-3.8%20%7C%203.8-blue.svg><img src=https://img.shields.io/github/license/EvieePy/Wavelink.svg>
 
 A robust and powerful Lavalink wrapper for [Disnake](https://github.com/EQUENOS/disnake)!
 
