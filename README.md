@@ -1,59 +1,40 @@
-.. image:: logo.png?raw=true
-    :align: center
+![Logo](./logo.png)
 
-.. image:: https://img.shields.io/badge/Python-3.7%20%7C%203.8-blue.svg
-    :target: https://www.python.org
+![Python3.8](https://img.shields.io/badge/Python-3.8%20%7C%203.8-blue.svg)
 
-.. image:: https://api.codacy.com/project/badge/Grade/d020ed97fd2a46fcb1f42bd3bc397e63
-   :target: https://app.codacy.com/app/mysterialpy/Wavelink?utm_source=github.com&utm_medium=referral&utm_content=EvieePy/Wavelink&utm_campaign=Badge_Grade_Dashboard
-
-.. image:: https://img.shields.io/github/license/EvieePy/Wavelink.svg
+![LICENSE](https://img.shields.io/github/license/EvieePy/Wavelink.svg)
     :target: LICENSE
 
-A robust and powerful Lavalink wrapper for `Discord.py <https://github.com/Rapptz/discord.py>`_!
+A robust and powerful Lavalink wrapper for [Disnake](https://github.com/EQUENOS/disnake)!
 
-Documentation
----------------------------
-`Official Documentation <https://wavelink.readthedocs.io/en/latest/wavelink.html#>`_.
+## Documentation
+[Official Documentation](https://wavelink.readthedocs.io/en/latest/wavelink.html)
 
-Support
----------------------------
-For support using WaveLink, please join the official `support server
-<https://discord.gg/RAKc3HF>`_ on `Discord <https://discordapp.com/>`_.
-
-|Discord|
-
-.. |Discord| image:: https://img.shields.io/discord/490948346773635102?color=%237289DA&label=Pythonista&logo=discord&logoColor=white
-   :target: https://discord.gg/RAKc3HF
-
-Installation
----------------------------
+## Installation
 The following commands are currently the valid ways of installing WaveLink.
 
-**WaveLink requires Python 3.7+**
+**WaveLink requires Python 3.8+**
 
 **Windows**
 
-.. code:: sh
-
-    py -3.7 -m pip install Wavelink
+```sh
+py -3.8 -m pip install Wavelink
+```
 
 **Linux**
 
-.. code:: sh
+```sh
+python3.8 -m pip install Wavelink
+```
 
-    python3.7 -m pip install Wavelink
-
-Getting Started
-----------------------------
+## Getting Started
 
 A quick and easy bot example:
 
-.. code:: py
-
-    import discord
+```py
+    import disnake
     import wavelink
-    from discord.ext import commands
+    from disnake.ext import commands
 
 
     class Bot(commands.Bot):
@@ -81,7 +62,7 @@ A quick and easy bot example:
             await self.bot.wait_until_ready()
 
             # Initiate our nodes. For this example we will use one server.
-            # Region should be a discord.py guild.region e.g sydney or us_central (Though this is not technically required)
+            # Region should be a disnake guild.region e.g sydney or us_central (Though this is not technically required)
             await self.bot.wavelink.initiate_node(host='127.0.0.1',
                                                   port=2333,
                                                   rest_uri='http://127.0.0.1:2333',
@@ -90,12 +71,12 @@ A quick and easy bot example:
                                                   region='us_central')
 
         @commands.command(name='connect')
-        async def connect_(self, ctx, *, channel: discord.VoiceChannel=None):
+        async def connect_(self, ctx, *, channel: disnake.VoiceChannel=None):
             if not channel:
                 try:
                     channel = ctx.author.voice.channel
                 except AttributeError:
-                    raise discord.DiscordException('No channel to join. Please either specify a valid channel or join one.')
+                    raise disnake.DiscordException('No channel to join. Please either specify a valid channel or join one.')
 
             player = self.bot.wavelink.get_player(ctx.guild.id)
             await ctx.send(f'Connecting to **`{channel.name}`**')
@@ -118,3 +99,4 @@ A quick and easy bot example:
 
     bot = Bot()
     bot.run('TOKEN')
+```
