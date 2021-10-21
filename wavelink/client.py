@@ -53,13 +53,15 @@ class Client:
             raise TypeError(msg)
 
         try:
-            update_handlers = bot.extra_events['on_socket_response']
+            update_handlers = bot.extra_events["on_voice_state_update"]
+            update_handlers = update_handlers = bot.extra_events["on_voice_server_update"]
         except KeyError:
             return super().__new__(cls)
 
         for handler in update_handlers:
             if handler.__self__.__class__.__qualname__ == 'wavelink.Client':
-                bot.remove_listener(handler, 'on_socket_response')
+                bot.remove_listener(handler, 'on_voice_state_update')
+                bot.remove_listener(handler, 'on_voice_server_update')
 
         return super().__new__(cls)
 
@@ -72,7 +74,8 @@ class Client:
 
         self._dumps = dumps
 
-        bot.add_listener(self.update_handler, 'on_socket_response')
+        bot.add_listener(self.state_update_handler, "on_voice_state_update")
+        bot.add_listener(self.server_update_handler, "on_voice_server_update")
 
     @property
     def shard_count(self) -> int:
@@ -450,31 +453,33 @@ class Client:
 
         await node.destroy()
 
-    async def update_handler(self, data) -> None:
+    async def state_update_handler(self, data) -> None:
         if not data or 't' not in data:
             return
 
-        if data['t'] == 'VOICE_SERVER_UPDATE':
-            guild_id = int(data['d']['guild_id'])
+        guild_id = int(data['d']['guild_id'])
 
-            try:
-                player = self.players[guild_id]
-            except KeyError:
-                pass
-            else:
-                await player._voice_server_update(data['d'])
+        try:
+            player = self.players[guild_id]
+        except KeyError:
+            pass
+        else:
+            await player._voice_server_update(data['d'])
 
-        elif data['t'] == 'VOICE_STATE_UPDATE':
-            if int(data['d']['user_id']) != int(self.user_id):
-                return
+    async def server_update_handler(self, data) -> None:
+        if not data or 't' not in data:
+            return
+            
+        if int(data['d']['user_id']) != int(self.user_id):
+            return
 
-            guild_id = int(data['d']['guild_id'])
-            try:
-                player = self.players[guild_id]
-            except KeyError:
-                pass
-            else:
-                await player._voice_state_update(data['d'])
+        guild_id = int(data['d']['guild_id'])
+        try:
+            player = self.players[guild_id]
+        except KeyError:
+            pass
+        else:
+            await player._voice_state_update(data['d'])
 
     def set_serializer(self, serializer_function) -> None:
         """Sets the JSON dumps function for use in the websocket.
