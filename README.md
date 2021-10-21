@@ -15,13 +15,13 @@ The following commands are currently the valid ways of installing WaveLink.
 **Windows**
 
 ```sh
-py -3.8 -m pip install Wavelink
+python -m pip install https://github.com/sync1211/Wavelink-Disnake/archive/refs/heads/master.zip
 ```
 
 **Linux**
 
 ```sh
-python3.8 -m pip install Wavelink
+python3 -m pip install https://github.com/sync1211/Wavelink-Disnake/archive/refs/heads/master.zip
 ```
 
 ## Getting Started
