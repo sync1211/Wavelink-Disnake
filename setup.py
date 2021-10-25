@@ -46,7 +46,7 @@ if ON_RTD:
         'sphinxcontrib-websupport',
     ))
 
-with open(ROOT / 'README.rst', encoding='utf-8') as f:
+with open(ROOT / 'README.md', encoding='utf-8') as f:
     README = f.read()
 
 with open(ROOT / 'wavelink' / '__init__.py', encoding='utf-8') as f:
