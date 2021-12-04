@@ -451,12 +451,16 @@ class Client:
 
         await node.destroy()
 
-    async def update_handler(self, data) -> None:
+    async def update_handler(self, data_raw) -> None:
+        if not data_raw:
+            return
+            
         try:
-            data = loads(data)
+            data = loads(data_raw)
         except JSONDecodeError:
             return
-        if not data or 't' not in data:
+            
+        if 't' not in data:
             return
 
         if data['t'] == 'VOICE_SERVER_UPDATE':
