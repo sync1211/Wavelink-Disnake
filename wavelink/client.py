@@ -25,7 +25,8 @@ import asyncio
 import logging
 from disnake.ext import commands
 from functools import partial
-from json import dumps
+from json import dumps, loads
+from json.decoder import JSONDecodeError
 from typing import Optional, Union
 
 from .errors import *
@@ -53,13 +54,13 @@ class Client:
             raise TypeError(msg)
 
         try:
-            update_handlers = bot.extra_events['on_socket_response']
+            update_handlers = bot.extra_events['on_socket_raw_receive']
         except KeyError:
             return super().__new__(cls)
 
         for handler in update_handlers:
             if handler.__self__.__class__.__qualname__ == 'wavelink.Client':
-                bot.remove_listener(handler, 'on_socket_response')
+                bot.remove_listener(handler, 'on_socket_raw_receive')
 
         return super().__new__(cls)
 
@@ -72,7 +73,7 @@ class Client:
 
         self._dumps = dumps
 
-        bot.add_listener(self.update_handler, 'on_socket_response')
+        bot.add_listener(self.update_handler, 'on_socket_raw_receive')
 
     @property
     def shard_count(self) -> int:
@@ -451,6 +452,10 @@ class Client:
         await node.destroy()
 
     async def update_handler(self, data) -> None:
+        try:
+            data = loads(data)
+        except JSONDecodeError:
+            return
         if not data or 't' not in data:
             return
 
