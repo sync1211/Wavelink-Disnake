@@ -54,13 +54,13 @@ with open(ROOT / 'wavelink' / '__init__.py', encoding='utf-8') as f:
 
 
 setuptools.setup(
-    name='wavelink',
-    author='EvieePy',
-    url='https://github.com/EvieePy/Wavelink',
+    name='wavelink-disnake',
+    author='EvieePy, Sync1211',
+    url='https://github.com/Sync1211/Wavelink-Disnake',
     version=VERSION,
-    packages=['wavelink'],
+    packages=['wavelink-disnake'],
     license='MIT',
-    description='A versatile LavaLink wrapper for Discord.py',
+    description='A versatile LavaLink wrapper for Disnake.py',
     long_description=README,
     include_package_data=True,
     install_requires=REQUIREMENTS,
