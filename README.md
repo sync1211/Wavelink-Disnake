@@ -2,7 +2,7 @@
 
 <img src=https://img.shields.io/badge/Python-3.8-blue.svg> <img src=https://img.shields.io/github/license/sync1211/Wavelink-disnake.svg>
 
-A robust and powerful Lavalink wrapper for [Disnake](https://github.com/EQUENOS/disnake)!
+A robust and powerful Lavalink wrapper for [Disnake](https://github.com/DisnakeDev/disnake)!
 
 ## Documentation
 [Official Documentation](https://wavelink.readthedocs.io/en/latest/wavelink.html)

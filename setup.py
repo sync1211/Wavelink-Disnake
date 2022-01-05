@@ -60,7 +60,7 @@ setuptools.setup(
     version=VERSION,
     packages=['wavelink'],
     license='MIT',
-    description='A versatile LavaLink wrapper for Disnake.py',
+    description='A versatile LavaLink wrapper for disnake',
     long_description=README,
     include_package_data=True,
     install_requires=REQUIREMENTS,
