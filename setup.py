@@ -58,7 +58,7 @@ setuptools.setup(
     author='EvieePy, Sync1211',
     url='https://github.com/Sync1211/Wavelink-Disnake',
     version=VERSION,
-    packages=['wavelink-disnake'],
+    packages=['wavelink'],
     license='MIT',
     description='A versatile LavaLink wrapper for Disnake.py',
     long_description=README,
